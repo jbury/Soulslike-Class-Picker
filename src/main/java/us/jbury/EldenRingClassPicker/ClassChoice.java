@@ -2,19 +2,21 @@ package us.jbury.EldenRingClassPicker;
 
 public class ClassChoice implements Comparable<ClassChoice> {
 	public final String className;
-	public final int wastedStats;
+	public final EldenRingClass wastedStatsBreakdown;
+	public final int totalWastedStats;
 
-	public ClassChoice(String className, int wastedStats){
+	public ClassChoice(String className, EldenRingClass wastedStatsBreakdown, int wastedStats){
 		this.className = className;
-		this.wastedStats = wastedStats;
+		this.wastedStatsBreakdown = wastedStatsBreakdown;
+		this.totalWastedStats = wastedStats;
 	}
 
 	@Override
 	public int compareTo(ClassChoice that) {
-		if(this.wastedStats == that.wastedStats){
+		if(this.totalWastedStats == that.totalWastedStats){
 			return this.className.compareTo(that.className);
 		}
 
-		return this.wastedStats - that.wastedStats;
+		return this.totalWastedStats - that.totalWastedStats;
 	}
 }

@@ -15,6 +15,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import us.jbury.EldenRingClassPicker.EldenRingClass.EldenRingClassBuilder;
 import us.jbury.EldenRingClassPicker.EldenRingClass.Stat;
 
 
@@ -31,18 +32,22 @@ public class EldenRingClassPicker {
 		CLASSES = gson.fromJson(reader, new TypeToken<ArrayList<EldenRingClass>>(){}.getType());
 	}
 
-	public List<ClassChoice> pickClass(Set<Stat> wastingStats){
+	public List<ClassChoice> pickClass(Map<Stat, Integer> constraints){
 		List<ClassChoice> choices = new ArrayList<ClassChoice>();
 
 		Map<EldenRingClass, Integer> wastedStatsPerClass = new HashMap<EldenRingClass, Integer>();
+		Map<EldenRingClass, EldenRingClass> classToWastedStatsMap = new HashMap<EldenRingClass, EldenRingClass>();
 		for(EldenRingClass c : CLASSES){
-			int wasted = 0;
+			EldenRingClassBuilder builder = new EldenRingClassBuilder().withClassName(c.className);
+			int totalWasted = 0;
 			for(Stat s : Stat.values()){
-				if(wastingStats.contains(s)){
-					wasted += c.getStat(s);
+				Integer constraint = constraints.get(s);
+				if(constraint != null && c.getStat(s) - constraint > 0) {
+					builder.withStat(s, c.getStat(s) - constraint);
+					totalWasted += c.getStat(s);
 				}
 			}
-			choices.add(new ClassChoice(c.className, wasted));
+			choices.add(new ClassChoice(c.className, builder.build(), totalWasted));
 		}
 		Collections.sort(choices);
 
@@ -52,16 +57,16 @@ public class EldenRingClassPicker {
 	public static void main(String[] args) throws IOException {
 		EldenRingClassPicker picker = new EldenRingClassPicker();
 
-		Set<Stat> constraints = new HashSet<Stat>();
-		constraints.add(Stat.arcane);
-		constraints.add(Stat.dexterity);
-		constraints.add(Stat.strength);
-		constraints.add(Stat.intelligence);
+		Map<Stat, Integer> constraints = new HashMap<Stat, Integer>();
+		constraints.put(Stat.strength, 0);
+		constraints.put(Stat.dexterity, 0);
+		constraints.put(Stat.arcane, 0);
+		constraints.put(Stat.intelligence, 0);
 
 		List<ClassChoice> choices = picker.pickClass(constraints);
 
 		for(ClassChoice c : choices) {
-			System.out.println(c.className + " : " + c.wastedStats);
+			System.out.println(c.className + " (Wasted " + c.totalWastedStats + "): " + new Gson().toJson(c.wastedStatsBreakdown));
 		}
 	}
 }
