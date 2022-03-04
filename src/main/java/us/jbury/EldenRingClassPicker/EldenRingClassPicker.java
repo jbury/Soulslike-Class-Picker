@@ -11,10 +11,9 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
+
 import us.jbury.EldenRingClassPicker.EldenRingClass.EldenRingClassBuilder;
 import us.jbury.EldenRingClassPicker.EldenRingClass.Stat;
 
@@ -44,7 +43,7 @@ public class EldenRingClassPicker {
 				Integer constraint = constraints.get(s);
 				if(constraint != null && c.getStat(s) - constraint > 0) {
 					builder.withStat(s, c.getStat(s) - constraint);
-					totalWasted += c.getStat(s);
+					totalWasted += c.getStat(s) - constraint;
 				}
 			}
 			choices.add(new ClassChoice(c.className, builder.build(), totalWasted));
@@ -58,8 +57,10 @@ public class EldenRingClassPicker {
 		EldenRingClassPicker picker = new EldenRingClassPicker();
 
 		Map<Stat, Integer> constraints = new HashMap<Stat, Integer>();
-		constraints.put(Stat.strength, 0);
-		constraints.put(Stat.dexterity, 0);
+
+		//This is for a pure Strength build that caps Dexterity at 18
+		constraints.put(Stat.dexterity, 18);
+		constraints.put(Stat.faith, 0);
 		constraints.put(Stat.arcane, 0);
 		constraints.put(Stat.intelligence, 0);
 
