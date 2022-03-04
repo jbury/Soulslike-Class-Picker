@@ -56,6 +56,7 @@ public class EldenRingClassPicker {
 	public static void main(String[] args) throws IOException {
 		EldenRingClassPicker picker = new EldenRingClassPicker();
 
+		//Map of Stat to maximum desired value OF that stat in your end build.
 		Map<Stat, Integer> constraints = new HashMap<Stat, Integer>();
 
 		//This is for a pure Strength build that caps Dexterity at 18
