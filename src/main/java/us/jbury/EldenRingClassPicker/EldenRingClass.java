@@ -1,17 +1,22 @@
 package us.jbury.EldenRingClassPicker;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class EldenRingClass {
+	public final static int MAX_NAME_LENGTH = 10;
+
 	public static enum Stat{
 		vigor, mind, endurance, strength, dexterity, intelligence, faith, arcane;
 	}
 
 	@SerializedName("Class")
+	@Expose(serialize = false)
 	public final String className;
+	@Expose(serialize = true)
 	public final int vigor, mind, endurance, strength, dexterity, intelligence, faith, arcane;
 
-	public EldenRingClass(String className, int vigor, int mind, int endurance, int strength, int dexterity, int intelligence, int faith, int arcane){
+	private EldenRingClass(String className, int vigor, int mind, int endurance, int strength, int dexterity, int intelligence, int faith, int arcane){
 		this.className = className;
 		this.vigor = vigor;
 		this.mind = mind;
@@ -35,6 +40,11 @@ public class EldenRingClass {
 			case arcane: return this.arcane;
 		}
 		throw new RuntimeException("Where did you even get that stat: " + s.name());
+	}
+
+	public String getNameWithBuffer(){
+		int bufferLength = MAX_NAME_LENGTH - this.className.length();
+		return this.className + " ".repeat(bufferLength);
 	}
 
 	public static class EldenRingClassBuilder {

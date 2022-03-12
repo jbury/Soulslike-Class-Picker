@@ -27,7 +27,9 @@ public class EldenRingClassPicker {
 		InputStream is = getClass().getClassLoader().getResourceAsStream(ELDEN_RING_CLASSES_JSON);
 		Reader reader = new InputStreamReader(is, "UTF-8");
 
-		Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).create();
+		 Gson gson = new GsonBuilder()
+			.setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
+			.create();
 		CLASSES = gson.fromJson(reader, new TypeToken<ArrayList<EldenRingClass>>(){}.getType());
 	}
 
@@ -59,16 +61,20 @@ public class EldenRingClassPicker {
 		//Map of Stat to maximum desired value OF that stat in your end build.
 		Map<Stat, Integer> constraints = new HashMap<Stat, Integer>();
 
-		//This is for a pure Strength build that caps Dexterity at 18
+		//Strength-Intelligence hybrid build, can wield most(all?) strength and int scaling weapons
+		constraints.put(Stat.strength, 38);
+		constraints.put(Stat.intelligence, 38);
 		constraints.put(Stat.dexterity, 18);
-		constraints.put(Stat.faith, 0);
 		constraints.put(Stat.arcane, 0);
-		constraints.put(Stat.intelligence, 0);
+		constraints.put(Stat.faith, 0);
 
 		List<ClassChoice> choices = picker.pickClass(constraints);
 
+		Gson gsonPrinter = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+
 		for(ClassChoice c : choices) {
-			System.out.println(c.className + " (Wasted " + c.totalWastedStats + "): " + new Gson().toJson(c.wastedStatsBreakdown));
+			System.out.println(c.getNameWithBuffer() + " (Wasted " + c.totalWastedStats + "):\t" +
+				gsonPrinter.toJson(c.wastedStatsBreakdown));
 		}
 	}
 }
