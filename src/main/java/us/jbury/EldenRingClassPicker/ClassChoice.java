@@ -32,6 +32,8 @@ public class ClassChoice implements Comparable<ClassChoice> {
 	 * is generally useful to any and every build imaginable.  Finally, we look to Strength as a
 	 * value to maximize as increasing strength increases the total encumbrance, allowing for more
 	 * total armor/poise.
+	 *
+	 * Finally, maximize level, so we don't have to spend as much time getting runes.
 	 */
 	@Override
 	public int compareTo(ClassChoice that) {

@@ -122,7 +122,6 @@ public class EldenRingClass {
 				case arcane:
 					return this.withArcane(value);
 			}
-
 			throw new RuntimeException("Where did you even get that stat: " + stat.name());
 		}
 

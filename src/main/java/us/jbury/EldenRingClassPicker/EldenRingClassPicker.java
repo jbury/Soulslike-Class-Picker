@@ -30,7 +30,9 @@ public class EldenRingClassPicker {
 		 Gson gson = new GsonBuilder()
 			.setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
 			.create();
-		CLASSES = gson.fromJson(reader, new TypeToken<ArrayList<EldenRingClass>>(){}.getType());
+
+		CLASSES = Collections.unmodifiableList(
+			gson.fromJson(reader, new TypeToken<ArrayList<EldenRingClass>>(){}.getType()));
 	}
 
 	//Just prints level and total stats for each class
@@ -50,7 +52,8 @@ public class EldenRingClassPicker {
 		List<ClassChoice> choices = new ArrayList<ClassChoice>();
 
 		Map<EldenRingClass, Integer> wastedStatsPerClass = new HashMap<EldenRingClass, Integer>();
-		Map<EldenRingClass, EldenRingClass> classToWastedStatsMap = new HashMap<EldenRingClass, EldenRingClass>();
+		Map<EldenRingClass, EldenRingClass> classToWastedStatsMap =
+			new HashMap<EldenRingClass, EldenRingClass>();
 		for(EldenRingClass c : CLASSES){
 			EldenRingClassBuilder builder = new EldenRingClassBuilder()
 				.withClassName(c.className)
