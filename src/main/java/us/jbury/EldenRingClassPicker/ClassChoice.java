@@ -4,11 +4,13 @@ import us.jbury.EldenRingClassPicker.EldenRingClass.Stat;
 
 public class ClassChoice implements Comparable<ClassChoice> {
 	public final String className;
+	public final int level;
 	public final EldenRingClass wastedStatsBreakdown;
 	public final int totalWastedStats;
 
-	public ClassChoice(String className, EldenRingClass wastedStatsBreakdown, int wastedStats){
+	public ClassChoice(String className, int level, EldenRingClass wastedStatsBreakdown, int wastedStats){
 		this.className = className;
+		this.level = level;
 		this.wastedStatsBreakdown = wastedStatsBreakdown;
 		this.totalWastedStats = wastedStats;
 	}
@@ -44,8 +46,13 @@ public class ClassChoice implements Comparable<ClassChoice> {
 		if(thatArcaneMinusThisArcane != 0){
 			return thatArcaneMinusThisArcane;
 		} else { // Use Strength as second tiebreaker if Arcane is also equivalent
-			return that.wastedStatsBreakdown.getStat(Stat.strength) -
+			int thatStrengthMinusThisStrength = that.wastedStatsBreakdown.getStat(Stat.strength) -
 				this.wastedStatsBreakdown.getStat(Stat.strength);
+			if(thatStrengthMinusThisStrength != 0){
+				return thatStrengthMinusThisStrength;
+			} else { //Somehow totalWastedStats, Arcane, and Strength are equal.  Pick highest level
+				return that.level - this.level;
+			}
 		}
 	}
 

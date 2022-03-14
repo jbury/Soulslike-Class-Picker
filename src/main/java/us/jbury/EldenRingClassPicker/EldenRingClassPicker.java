@@ -33,13 +33,28 @@ public class EldenRingClassPicker {
 		CLASSES = gson.fromJson(reader, new TypeToken<ArrayList<EldenRingClass>>(){}.getType());
 	}
 
+	//Just prints level and total stats for each class
+	//For whenever I worry that some classes have free points :)
+	public void listClassDetails(){
+		for(EldenRingClass c : CLASSES){
+			int totalStats = 0;
+			for(Stat s : Stat.values()){
+				totalStats += c.getStat(s);
+			}
+			System.out.println(c.getNameWithBuffer() + " - Level: " + c.level +
+				" \t(Total Stats: " + totalStats + ")");
+		}
+	}
+
 	public List<ClassChoice> pickClass(Map<Stat, Integer> constraints){
 		List<ClassChoice> choices = new ArrayList<ClassChoice>();
 
 		Map<EldenRingClass, Integer> wastedStatsPerClass = new HashMap<EldenRingClass, Integer>();
 		Map<EldenRingClass, EldenRingClass> classToWastedStatsMap = new HashMap<EldenRingClass, EldenRingClass>();
 		for(EldenRingClass c : CLASSES){
-			EldenRingClassBuilder builder = new EldenRingClassBuilder().withClassName(c.className);
+			EldenRingClassBuilder builder = new EldenRingClassBuilder()
+				.withClassName(c.className)
+				.withLevel(c.level);
 			int totalWasted = 0;
 			for(Stat s : Stat.values()){
 				Integer constraint = constraints.get(s);
@@ -48,7 +63,7 @@ public class EldenRingClassPicker {
 					totalWasted += c.getStat(s) - constraint;
 				}
 			}
-			choices.add(new ClassChoice(c.className, builder.build(), totalWasted));
+			choices.add(new ClassChoice(c.className, c.level, builder.build(), totalWasted));
 		}
 		Collections.sort(choices);
 
@@ -59,14 +74,7 @@ public class EldenRingClassPicker {
 		EldenRingClassPicker picker = new EldenRingClassPicker();
 
 		//Map of Stat to maximum desired value OF that stat in your end build.
-		Map<Stat, Integer> constraints = new HashMap<Stat, Integer>();
-
-		//Strength-Intelligence hybrid build, can wield most(all?) strength and int scaling weapons
-		constraints.put(Stat.strength, 38);
-		constraints.put(Stat.intelligence, 38);
-		constraints.put(Stat.dexterity, 18);
-		constraints.put(Stat.arcane, 0);
-		constraints.put(Stat.faith, 0);
+		Map<Stat, Integer> constraints = PremadeConstraints.arcaneBloodConstraints();
 
 		List<ClassChoice> choices = picker.pickClass(constraints);
 
@@ -77,4 +85,6 @@ public class EldenRingClassPicker {
 				gsonPrinter.toJson(c.wastedStatsBreakdown));
 		}
 	}
+
+
 }

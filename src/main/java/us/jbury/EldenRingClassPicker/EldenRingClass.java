@@ -14,10 +14,11 @@ public class EldenRingClass {
 	@Expose(serialize = false)
 	public final String className;
 	@Expose(serialize = true)
-	public final int vigor, mind, endurance, strength, dexterity, intelligence, faith, arcane;
+	public final int level, vigor, mind, endurance, strength, dexterity, intelligence, faith, arcane;
 
-	private EldenRingClass(String className, int vigor, int mind, int endurance, int strength, int dexterity, int intelligence, int faith, int arcane){
+	private EldenRingClass(String className, int level, int vigor, int mind, int endurance, int strength, int dexterity, int intelligence, int faith, int arcane){
 		this.className = className;
+		this.level = level;
 		this.vigor = vigor;
 		this.mind = mind;
 		this.endurance = endurance;
@@ -50,10 +51,15 @@ public class EldenRingClass {
 	public static class EldenRingClassBuilder {
 
 		public String className;
-		public int vigor, mind, endurance, strength, dexterity, intelligence, faith, arcane;
+		public int level, vigor, mind, endurance, strength, dexterity, intelligence, faith, arcane;
 
 		public EldenRingClassBuilder withClassName(String className) {
 			this.className = className;
+			return this;
+		}
+
+		public EldenRingClassBuilder withLevel(int level){
+			this.level = level;
 			return this;
 		}
 
@@ -121,7 +127,7 @@ public class EldenRingClass {
 		}
 
 		public EldenRingClass build(){
-			return new EldenRingClass(this.className, this.vigor, this.mind, this.endurance,
+			return new EldenRingClass(this.className, this.level, this.vigor, this.mind, this.endurance,
 				this.strength, this.dexterity, this.intelligence, this.faith, this.arcane);
 		}
 	}
