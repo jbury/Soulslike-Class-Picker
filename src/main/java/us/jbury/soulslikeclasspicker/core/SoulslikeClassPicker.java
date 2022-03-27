@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import us.jbury.soulslikeclasspicker.darksouls1.DarkSouls1ClassPickerHelper;
 import us.jbury.soulslikeclasspicker.eldenring.EldenRingClassPickerHelper;
 import us.jbury.soulslikeclasspicker.premades.EldenRingPremadeConstraints;
 
@@ -20,7 +21,10 @@ public class SoulslikeClassPicker {
 	}
 
 	public static void main(String[] args) throws IOException {
-		SoulslikeClassPicker picker = new SoulslikeClassPicker(new EldenRingClassPickerHelper());
+		SoulslikeClassPicker picker = new SoulslikeClassPicker(new DarkSouls1ClassPickerHelper());
+
+		picker.listClassDetails();
+		System.exit(0);
 
 		//Map of Stat to maximum desired value OF that stat in your end build.
 		Map<Stat, Integer> constraints = EldenRingPremadeConstraints.arcaneBloodConstraints();
@@ -44,8 +48,8 @@ public class SoulslikeClassPicker {
 				totalStats += c.getStat(s);
 			}
 			System.out.println(c.getNameWithBuffer() + " - " + (totalStats - c.getLevel()) +
-				"original points (Level: " + c.getLevel() +
-				" \t(Total Stats: " + totalStats + ")");
+				" original points (Level: " + c.getLevel() +
+				" \t Total Stats: " + totalStats + ")");
 		}
 	}
 
