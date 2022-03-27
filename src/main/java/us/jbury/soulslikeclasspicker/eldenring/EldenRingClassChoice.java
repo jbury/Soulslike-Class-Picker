@@ -1,22 +1,12 @@
-package us.jbury.EldenRingClassPicker;
+package us.jbury.soulslikeclasspicker.eldenring;
 
-import us.jbury.EldenRingClassPicker.EldenRingClass.Stat;
+import us.jbury.soulslikeclasspicker.core.SoulslikeClass;
+import us.jbury.soulslikeclasspicker.core.SoulslikeClassChoice;
+import us.jbury.soulslikeclasspicker.eldenring.EldenRingClass.EldenRingStat;
 
-public class ClassChoice implements Comparable<ClassChoice> {
-	public final String className;
-	public final int level;
-	public final EldenRingClass wastedStatsBreakdown;
-	public final int totalWastedStats;
-
-	public ClassChoice(String className, int level, EldenRingClass wastedStatsBreakdown, int wastedStats){
-		this.className = className;
-		this.level = level;
-		this.wastedStatsBreakdown = wastedStatsBreakdown;
-		this.totalWastedStats = wastedStats;
-	}
-
-	public String getNameWithBuffer(){
-		return this.wastedStatsBreakdown.getNameWithBuffer();
+public class EldenRingClassChoice extends SoulslikeClassChoice {
+	public EldenRingClassChoice(String className, int level, SoulslikeClass wastedStatsBreakdown, int wastedStats){
+		super(className, level, wastedStatsBreakdown, wastedStats);
 	}
 
 	/**
@@ -36,26 +26,28 @@ public class ClassChoice implements Comparable<ClassChoice> {
 	 * Finally, maximize level, so we don't have to spend as much time getting runes.
 	 */
 	@Override
-	public int compareTo(ClassChoice that) {
+	public int compareTo(SoulslikeClassChoice that) {
 		// If there's a difference in totalWastedStats, that's our main sorting criteria
 		if(this.totalWastedStats != that.totalWastedStats) {
 			return this.totalWastedStats - that.totalWastedStats;
 		}
 
-		int thatArcaneMinusThisArcane = that.wastedStatsBreakdown.getStat(Stat.arcane) -
-			this.wastedStatsBreakdown.getStat(Stat.arcane);
 		// Use Arcane as first tiebreaker if totalWastedStats are equal
+		int thatArcaneMinusThisArcane = that.wastedStatsBreakdown.getStat(EldenRingStat.arcane) -
+			this.wastedStatsBreakdown.getStat(EldenRingStat.arcane);
 		if(thatArcaneMinusThisArcane != 0){
 			return thatArcaneMinusThisArcane;
-		} else { // Use Strength as second tiebreaker if Arcane is also equivalent
-			int thatStrengthMinusThisStrength = that.wastedStatsBreakdown.getStat(Stat.strength) -
-				this.wastedStatsBreakdown.getStat(Stat.strength);
-			if(thatStrengthMinusThisStrength != 0){
-				return thatStrengthMinusThisStrength;
-			} else { //Somehow totalWastedStats, Arcane, and Strength are equal.  Pick highest level
-				return that.level - this.level;
-			}
 		}
-	}
 
+		// Use Strength as second tiebreaker if Arcane is also equivalent
+		int thatStrengthMinusThisStrength = that.wastedStatsBreakdown.getStat(EldenRingStat.strength) -
+			this.wastedStatsBreakdown.getStat(EldenRingStat.strength);
+		if(thatStrengthMinusThisStrength != 0) {
+			return thatStrengthMinusThisStrength;
+		}
+
+		//Somehow totalWastedStats, Arcane, and Strength are equal.  Pick highest level for
+		// convenience
+		return that.level - this.level;
+	}
 }

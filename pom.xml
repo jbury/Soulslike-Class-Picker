@@ -21,7 +21,7 @@
   </build>
 
   <properties>
-    <exec.mainClass>us.jbury.EldenRingClassPicker.EldenRingClassPicker</exec.mainClass>
+    <exec.mainClass>us.jbury.soulslikeclasspicker.eldenring.EldenRingClassPickerHelper</exec.mainClass>
     <maven.compiler.source>8</maven.compiler.source>
     <maven.compiler.target>8</maven.compiler.target>
   </properties>

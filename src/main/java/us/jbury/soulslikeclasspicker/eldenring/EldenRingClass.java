@@ -1,13 +1,21 @@
-package us.jbury.EldenRingClassPicker;
+package us.jbury.soulslikeclasspicker.eldenring;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import us.jbury.soulslikeclasspicker.core.SoulslikeClass;
+import us.jbury.soulslikeclasspicker.core.SoulslikeClassBuilder;
+import us.jbury.soulslikeclasspicker.core.Stat;
 
-public class EldenRingClass {
+public class EldenRingClass implements SoulslikeClass {
 	public final static int MAX_NAME_LENGTH = 10;
 
-	public static enum Stat{
+	public static enum EldenRingStat implements Stat {
 		vigor, mind, endurance, strength, dexterity, intelligence, faith, arcane;
+
+		@Override
+		public Stat[] getStatsList() {
+			return EldenRingStat.values();
+		}
 	}
 
 	@SerializedName("Class")
@@ -30,7 +38,7 @@ public class EldenRingClass {
 	}
 
 	public int getStat(Stat s){
-		switch(s){
+		switch((EldenRingStat) s){
 			case vigor: return this.vigor;
 			case mind: return this.mind;
 			case endurance: return this.endurance;
@@ -48,7 +56,17 @@ public class EldenRingClass {
 		return this.className + " ".repeat(bufferLength);
 	}
 
-	public static class EldenRingClassBuilder {
+	public int getLevel(){
+		return this.level;
+	}
+
+	@Override
+	public String getName() {
+		return this.className;
+	}
+
+	public static class EldenRingClassBuilder implements
+		SoulslikeClassBuilder {
 
 		public String className;
 		public int level, vigor, mind, endurance, strength, dexterity, intelligence, faith, arcane;
@@ -103,8 +121,8 @@ public class EldenRingClass {
 			return this;
 		}
 
-		public EldenRingClassBuilder withStat(Stat stat, int value) {
-			switch (stat) {
+		public SoulslikeClassBuilder withStat(Stat stat, int value) {
+			switch ((EldenRingStat)stat) {
 				case vigor:
 					return this.withVigor(value);
 				case mind:
