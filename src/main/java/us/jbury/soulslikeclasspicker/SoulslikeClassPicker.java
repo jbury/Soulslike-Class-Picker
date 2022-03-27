@@ -1,4 +1,4 @@
-package us.jbury.soulslikeclasspicker.core;
+package us.jbury.soulslikeclasspicker;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -8,8 +8,12 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import us.jbury.soulslikeclasspicker.core.BaseSoulslikeClassChoice;
+import us.jbury.soulslikeclasspicker.core.SoulslikeClass;
+import us.jbury.soulslikeclasspicker.core.SoulslikeClassBuilder;
+import us.jbury.soulslikeclasspicker.core.Stat;
+import us.jbury.soulslikeclasspicker.core.UnmodifiableSoulslikeClassPickerHelper;
 import us.jbury.soulslikeclasspicker.darksouls1.DarkSouls1ClassPickerHelper;
-import us.jbury.soulslikeclasspicker.eldenring.EldenRingClassPickerHelper;
 import us.jbury.soulslikeclasspicker.premades.EldenRingPremadeConstraints;
 
 public class SoulslikeClassPicker {
@@ -44,7 +48,7 @@ public class SoulslikeClassPicker {
 	public void listClassDetails() {
 		for (SoulslikeClass c : this.classPickerHelper.getClassList()) {
 			int totalStats = 0;
-			for (Stat s : this.classPickerHelper.getInternalStatsList()) {
+			for (Stat s : this.classPickerHelper.getStatsList()) {
 				totalStats += c.getStat(s);
 			}
 			System.out.println(c.getNameWithBuffer() + " - " + (totalStats - c.getLevel()) +
@@ -64,7 +68,7 @@ public class SoulslikeClassPicker {
 				.withClassName(c.getName())
 				.withLevel(c.getLevel());
 			int totalWasted = 0;
-			for (Stat s : this.classPickerHelper.getInternalStatsList()) {
+			for (Stat s : this.classPickerHelper.getStatsList()) {
 				Integer constraint = constraints.get(s);
 				if (constraint != null && c.getStat(s) - constraint > 0) {
 					builder.withStat(s, c.getStat(s) - constraint);
