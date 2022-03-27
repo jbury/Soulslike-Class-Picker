@@ -13,11 +13,12 @@ import java.util.Collections;
 import java.util.List;
 import us.jbury.soulslikeclasspicker.core.SoulslikeClass;
 import us.jbury.soulslikeclasspicker.core.SoulslikeClassBuilder;
-import us.jbury.soulslikeclasspicker.core.SoulslikeClassChoice;
-import us.jbury.soulslikeclasspicker.core.SoulslikeClassPickerHelper;
+import us.jbury.soulslikeclasspicker.core.BaseSoulslikeClassChoice;
+import us.jbury.soulslikeclasspicker.core.UnmodifiableSoulslikeClassPickerHelper;
 import us.jbury.soulslikeclasspicker.core.Stat;
 
-public class DarkSouls1ClassPickerHelper extends SoulslikeClassPickerHelper {
+public class DarkSouls1ClassPickerHelper extends
+	UnmodifiableSoulslikeClassPickerHelper {
 
 	private static final String DARK_SOULS_1_CLASSES_JSON = "DarkSouls1Classes.json";
 
@@ -41,7 +42,7 @@ public class DarkSouls1ClassPickerHelper extends SoulslikeClassPickerHelper {
 	}
 
 	@Override
-	public List<Stat> getStatsList() {
+	public List<Stat> getInternalStatsList() {
 		return List.of(DarkSouls1Stat.values());
 	}
 
@@ -56,8 +57,8 @@ public class DarkSouls1ClassPickerHelper extends SoulslikeClassPickerHelper {
 	}
 
 	@Override
-	public SoulslikeClassChoice getNewClassChoice(String className, int level,
+	public BaseSoulslikeClassChoice getNewClassChoice(String className, int level,
 		SoulslikeClass wastedStatsBreakdown, int wastedStats) {
-		return new DarkSouls1ClassChoice(className, level, wastedStatsBreakdown, wastedStats);
+		return new DarkSouls1ClassChoiceBase(className, level, wastedStatsBreakdown, wastedStats);
 	}
 }
