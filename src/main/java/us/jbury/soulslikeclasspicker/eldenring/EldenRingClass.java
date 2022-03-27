@@ -7,24 +7,15 @@ import us.jbury.soulslikeclasspicker.core.SoulslikeClassBuilder;
 import us.jbury.soulslikeclasspicker.core.Stat;
 
 public class EldenRingClass implements SoulslikeClass {
+
 	public final static int MAX_NAME_LENGTH = 10;
-
-	public static enum EldenRingStat implements Stat {
-		vigor, mind, endurance, strength, dexterity, intelligence, faith, arcane;
-
-		@Override
-		public Stat[] getStatsList() {
-			return EldenRingStat.values();
-		}
-	}
-
 	@SerializedName("Class")
 	@Expose(serialize = false)
 	public final String className;
 	@Expose(serialize = true)
 	public final int level, vigor, mind, endurance, strength, dexterity, intelligence, faith, arcane;
-
-	private EldenRingClass(String className, int level, int vigor, int mind, int endurance, int strength, int dexterity, int intelligence, int faith, int arcane){
+	private EldenRingClass(String className, int level, int vigor, int mind, int endurance,
+		int strength, int dexterity, int intelligence, int faith, int arcane) {
 		this.className = className;
 		this.level = level;
 		this.vigor = vigor;
@@ -37,32 +28,49 @@ public class EldenRingClass implements SoulslikeClass {
 		this.arcane = arcane;
 	}
 
-	public int getStat(Stat s){
-		switch((EldenRingStat) s){
-			case vigor: return this.vigor;
-			case mind: return this.mind;
-			case endurance: return this.endurance;
-			case strength: return this.strength;
-			case dexterity: return this.dexterity;
-			case intelligence: return this.intelligence;
-			case faith: return this.faith;
-			case arcane: return this.arcane;
+	public int getStat(Stat s) {
+		switch ((EldenRingStat) s) {
+			case vigor:
+				return this.vigor;
+			case mind:
+				return this.mind;
+			case endurance:
+				return this.endurance;
+			case strength:
+				return this.strength;
+			case dexterity:
+				return this.dexterity;
+			case intelligence:
+				return this.intelligence;
+			case faith:
+				return this.faith;
+			case arcane:
+				return this.arcane;
 		}
 		throw new RuntimeException("Where did you even get that stat: " + s.name());
 	}
 
-	public String getNameWithBuffer(){
+	public String getNameWithBuffer() {
 		int bufferLength = MAX_NAME_LENGTH - this.className.length();
 		return this.className + " ".repeat(bufferLength);
 	}
 
-	public int getLevel(){
+	public int getLevel() {
 		return this.level;
 	}
 
 	@Override
 	public String getName() {
 		return this.className;
+	}
+
+	public static enum EldenRingStat implements Stat {
+		vigor, mind, endurance, strength, dexterity, intelligence, faith, arcane;
+
+		@Override
+		public Stat[] getStatsList() {
+			return EldenRingStat.values();
+		}
 	}
 
 	public static class EldenRingClassBuilder implements
@@ -76,7 +84,7 @@ public class EldenRingClass implements SoulslikeClass {
 			return this;
 		}
 
-		public EldenRingClassBuilder withLevel(int level){
+		public EldenRingClassBuilder withLevel(int level) {
 			this.level = level;
 			return this;
 		}
@@ -122,7 +130,7 @@ public class EldenRingClass implements SoulslikeClass {
 		}
 
 		public SoulslikeClassBuilder withStat(Stat stat, int value) {
-			switch ((EldenRingStat)stat) {
+			switch ((EldenRingStat) stat) {
 				case vigor:
 					return this.withVigor(value);
 				case mind:
@@ -143,8 +151,9 @@ public class EldenRingClass implements SoulslikeClass {
 			throw new RuntimeException("Where did you even get that stat: " + stat.name());
 		}
 
-		public EldenRingClass build(){
-			return new EldenRingClass(this.className, this.level, this.vigor, this.mind, this.endurance,
+		public EldenRingClass build() {
+			return new EldenRingClass(this.className, this.level, this.vigor, this.mind,
+				this.endurance,
 				this.strength, this.dexterity, this.intelligence, this.faith, this.arcane);
 		}
 	}

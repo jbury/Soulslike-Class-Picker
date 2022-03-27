@@ -11,7 +11,6 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import us.jbury.soulslikeclasspicker.core.SoulslikeClass;
 import us.jbury.soulslikeclasspicker.core.SoulslikeClassBuilder;
 import us.jbury.soulslikeclasspicker.core.SoulslikeClassChoice;
@@ -21,6 +20,7 @@ import us.jbury.soulslikeclasspicker.eldenring.EldenRingClass.EldenRingStat;
 
 
 public class EldenRingClassPickerHelper extends SoulslikeClassPickerHelper {
+
 	private static final String ELDEN_RING_CLASSES_JSON = "EldenRingClasses.json";
 
 	private final List<SoulslikeClass> CLASSES;
@@ -31,12 +31,13 @@ public class EldenRingClassPickerHelper extends SoulslikeClassPickerHelper {
 		InputStream is = getClass().getClassLoader().getResourceAsStream(ELDEN_RING_CLASSES_JSON);
 		Reader reader = new InputStreamReader(is, "UTF-8");
 
-		 Gson gson = new GsonBuilder()
+		Gson gson = new GsonBuilder()
 			.setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
 			.create();
 
 		CLASSES = Collections.unmodifiableList(
-			gson.fromJson(reader, new TypeToken<ArrayList<EldenRingClass>>(){}.getType()));
+			gson.fromJson(reader, new TypeToken<ArrayList<EldenRingClass>>() {
+			}.getType()));
 
 		STATS = List.of(EldenRingStat.values());
 	}

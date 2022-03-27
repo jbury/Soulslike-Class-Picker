@@ -6,7 +6,8 @@ import us.jbury.soulslikeclasspicker.core.Stat;
 import us.jbury.soulslikeclasspicker.eldenring.EldenRingClass.EldenRingStat;
 
 public class EldenRingPremadeConstraints {
-	public static Map<Stat, Integer> pureStrengthConstraints(){
+
+	public static Map<Stat, Integer> pureStrengthConstraints() {
 		Map<Stat, Integer> constraints = new HashMap<Stat, Integer>();
 
 		constraints.put(EldenRingStat.intelligence, 0);
@@ -18,7 +19,7 @@ public class EldenRingPremadeConstraints {
 		return constraints;
 	}
 
-	public static Map<Stat, Integer> pureIntConstraints(){
+	public static Map<Stat, Integer> pureIntConstraints() {
 		Map<Stat, Integer> constraints = new HashMap<Stat, Integer>();
 
 		constraints.put(EldenRingStat.strength, 0);
@@ -29,7 +30,7 @@ public class EldenRingPremadeConstraints {
 		return constraints;
 	}
 
-	public static Map<Stat, Integer> pureFaithConstraints(){
+	public static Map<Stat, Integer> pureFaithConstraints() {
 		Map<Stat, Integer> constraints = new HashMap<Stat, Integer>();
 
 		constraints.put(EldenRingStat.strength, 0);
@@ -40,13 +41,12 @@ public class EldenRingPremadeConstraints {
 		return constraints;
 	}
 
-	public static Map<Stat, Integer> arcaneDragonConstraints(){
+	public static Map<Stat, Integer> arcaneDragonConstraints() {
 		Map<Stat, Integer> constraints = new HashMap<Stat, Integer>();
 
 		constraints.put(EldenRingStat.strength, 11);
 
-
-		constraints.put(EldenRingStat.dexterity,11);
+		constraints.put(EldenRingStat.dexterity, 11);
 
 		constraints.put(EldenRingStat.intelligence, 0);
 		constraints.put(EldenRingStat.faith, 24);
@@ -54,7 +54,7 @@ public class EldenRingPremadeConstraints {
 		return constraints;
 	}
 
-	public static Map<Stat, Integer> arcaneBloodConstraints(){
+	public static Map<Stat, Integer> arcaneBloodConstraints() {
 		Map<Stat, Integer> constraints = new HashMap<Stat, Integer>();
 
 		//24(16 2h) sacred spear, Marais Executioner's Sword
@@ -65,7 +65,7 @@ public class EldenRingPremadeConstraints {
 		//21 Eleonora's Poleblade (twinblade)
 		//22 clinging bone
 		//35 Margott's cursed sword
-		constraints.put(EldenRingStat.dexterity,35);
+		constraints.put(EldenRingStat.dexterity, 35);
 
 		constraints.put(EldenRingStat.intelligence, 0);
 
