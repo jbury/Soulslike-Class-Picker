@@ -1,4 +1,4 @@
-package us.jbury.soulslikeclasspicker.darksouls1;
+package us.jbury.soulslikeclasspicker.games.darksouls1;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
@@ -11,11 +11,11 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import us.jbury.soulslikeclasspicker.core.BaseSoulslikeClassChoice;
 import us.jbury.soulslikeclasspicker.core.SoulslikeClass;
 import us.jbury.soulslikeclasspicker.core.SoulslikeClassBuilder;
-import us.jbury.soulslikeclasspicker.core.BaseSoulslikeClassChoice;
-import us.jbury.soulslikeclasspicker.core.UnmodifiableSoulslikeClassPickerHelper;
 import us.jbury.soulslikeclasspicker.core.Stat;
+import us.jbury.soulslikeclasspicker.core.UnmodifiableSoulslikeClassPickerHelper;
 
 public class DarkSouls1ClassPickerHelper extends
 	UnmodifiableSoulslikeClassPickerHelper {

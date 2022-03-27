@@ -9,7 +9,7 @@ public abstract class UnmodifiableSoulslikeClassPickerHelper {
 		return Collections.unmodifiableList(getInternalClassList());
 	}
 
-	public final List<Stat> getStatsList(){
+	public final List<Stat> getStatsList() {
 		return Collections.unmodifiableList(getInternalStatsList());
 	}
 

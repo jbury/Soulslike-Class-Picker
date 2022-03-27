@@ -1,4 +1,4 @@
-package us.jbury.soulslikeclasspicker.darksouls1;
+package us.jbury.soulslikeclasspicker.games.darksouls1;
 
 import us.jbury.soulslikeclasspicker.core.Stat;
 

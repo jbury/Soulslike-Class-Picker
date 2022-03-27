@@ -13,14 +13,15 @@ import us.jbury.soulslikeclasspicker.core.SoulslikeClass;
 import us.jbury.soulslikeclasspicker.core.SoulslikeClassBuilder;
 import us.jbury.soulslikeclasspicker.core.Stat;
 import us.jbury.soulslikeclasspicker.core.UnmodifiableSoulslikeClassPickerHelper;
-import us.jbury.soulslikeclasspicker.darksouls1.DarkSouls1ClassPickerHelper;
+import us.jbury.soulslikeclasspicker.games.darksouls1.DarkSouls1ClassPickerHelper;
 import us.jbury.soulslikeclasspicker.premades.EldenRingPremadeConstraints;
 
 public class SoulslikeClassPicker {
 
 	private final UnmodifiableSoulslikeClassPickerHelper classPickerHelper;
 
-	public SoulslikeClassPicker(UnmodifiableSoulslikeClassPickerHelper classPickerHelper) throws IOException {
+	public SoulslikeClassPicker(UnmodifiableSoulslikeClassPickerHelper classPickerHelper)
+		throws IOException {
 		this.classPickerHelper = classPickerHelper;
 	}
 

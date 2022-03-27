@@ -27,7 +27,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <properties>
-    <exec.mainClass>us.jbury.soulslikeclasspicker.eldenring.EldenRingClassPickerHelper
+    <exec.mainClass>us.jbury.soulslikeclasspicker.games.eldenring.EldenRingClassPickerHelper
     </exec.mainClass>
     <maven.compiler.source>8</maven.compiler.source>
     <maven.compiler.target>8</maven.compiler.target>

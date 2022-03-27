@@ -3,7 +3,7 @@ package us.jbury.soulslikeclasspicker.premades;
 import java.util.HashMap;
 import java.util.Map;
 import us.jbury.soulslikeclasspicker.core.Stat;
-import us.jbury.soulslikeclasspicker.eldenring.EldenRingStat;
+import us.jbury.soulslikeclasspicker.games.eldenring.EldenRingStat;
 
 public class EldenRingPremadeConstraints {
 

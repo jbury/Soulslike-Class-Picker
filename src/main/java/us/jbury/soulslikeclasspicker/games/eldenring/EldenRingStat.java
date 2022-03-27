@@ -1,4 +1,4 @@
-package us.jbury.soulslikeclasspicker.eldenring;
+package us.jbury.soulslikeclasspicker.games.eldenring;
 
 import us.jbury.soulslikeclasspicker.core.Stat;
 

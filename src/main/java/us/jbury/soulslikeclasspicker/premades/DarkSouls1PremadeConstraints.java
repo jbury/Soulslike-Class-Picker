@@ -3,10 +3,11 @@ package us.jbury.soulslikeclasspicker.premades;
 import java.util.HashMap;
 import java.util.Map;
 import us.jbury.soulslikeclasspicker.core.Stat;
-import us.jbury.soulslikeclasspicker.darksouls1.DarkSouls1Stat;
+import us.jbury.soulslikeclasspicker.games.darksouls1.DarkSouls1Stat;
 
 public class DarkSouls1PremadeConstraints {
-	private static Map<Stat, Integer> baseMap(){
+
+	private static Map<Stat, Integer> baseMap() {
 		Map<Stat, Integer> constraints = new HashMap<>();
 		constraints.put(DarkSouls1Stat.resistance, 0);
 		return constraints;

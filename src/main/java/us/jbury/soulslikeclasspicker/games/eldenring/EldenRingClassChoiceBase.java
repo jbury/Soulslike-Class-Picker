@@ -1,11 +1,12 @@
-package us.jbury.soulslikeclasspicker.eldenring;
+package us.jbury.soulslikeclasspicker.games.eldenring;
 
-import us.jbury.soulslikeclasspicker.core.SoulslikeClass;
 import us.jbury.soulslikeclasspicker.core.BaseSoulslikeClassChoice;
+import us.jbury.soulslikeclasspicker.core.SoulslikeClass;
 
 public class EldenRingClassChoiceBase extends BaseSoulslikeClassChoice {
 
-	public EldenRingClassChoiceBase(String className, int level, SoulslikeClass wastedStatsBreakdown,
+	public EldenRingClassChoiceBase(String className, int level,
+		SoulslikeClass wastedStatsBreakdown,
 		int wastedStats) {
 		super(className, level, wastedStatsBreakdown, wastedStats);
 	}
