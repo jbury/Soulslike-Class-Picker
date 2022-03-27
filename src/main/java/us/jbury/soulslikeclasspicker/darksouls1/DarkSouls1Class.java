@@ -1,60 +1,57 @@
-package us.jbury.soulslikeclasspicker.eldenring;
+package us.jbury.soulslikeclasspicker.darksouls1;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import us.jbury.soulslikeclasspicker.core.SoulslikeClass;
 import us.jbury.soulslikeclasspicker.core.Stat;
 
-public class EldenRingClass implements SoulslikeClass {
+public class DarkSouls1Class implements SoulslikeClass {
 
 	public final static int MAX_NAME_LENGTH = 10;
 	@SerializedName("Class")
 	@Expose(serialize = false)
 	public final String className;
 	@Expose(serialize = true)
-	public final int level, vigor, mind, endurance, strength, dexterity, intelligence, faith, arcane;
+	public final int level, vitality, attunement, endurance, strength, dexterity, resistance, intelligence, faith;
 
-	EldenRingClass(String className, int level, int vigor, int mind, int endurance,
-		int strength, int dexterity, int intelligence, int faith, int arcane) {
+	DarkSouls1Class(String className, int level, int vitality, int attunement, int endurance,
+		int strength, int dexterity, int resistance, int intelligence, int faith) {
 		this.className = className;
 		this.level = level;
-		this.vigor = vigor;
-		this.mind = mind;
+		this.vitality = vitality;
+		this.attunement = attunement;
 		this.endurance = endurance;
 		this.strength = strength;
 		this.dexterity = dexterity;
+		this.resistance = resistance;
 		this.intelligence = intelligence;
 		this.faith = faith;
-		this.arcane = arcane;
 	}
 
+	@Override
 	public int getStat(Stat s) {
-		switch ((EldenRingStat) s) {
-			case vigor:
-				return this.vigor;
-			case mind:
-				return this.mind;
+		switch ((DarkSouls1Stat) s) {
+			case vitality:
+				return this.vitality;
+			case attunement:
+				return this.attunement;
 			case endurance:
 				return this.endurance;
 			case strength:
 				return this.strength;
 			case dexterity:
 				return this.dexterity;
+			case resistance:
+				return this.resistance;
 			case intelligence:
 				return this.intelligence;
 			case faith:
 				return this.faith;
-			case arcane:
-				return this.arcane;
 		}
 		throw new RuntimeException("Where did you even get that stat: " + s.name());
 	}
 
-	public String getNameWithBuffer() {
-		int bufferLength = MAX_NAME_LENGTH - this.className.length();
-		return this.className + " ".repeat(bufferLength);
-	}
-
+	@Override
 	public int getLevel() {
 		return this.level;
 	}
@@ -62,5 +59,11 @@ public class EldenRingClass implements SoulslikeClass {
 	@Override
 	public String getName() {
 		return this.className;
+	}
+
+	@Override
+	public String getNameWithBuffer() {
+		int bufferLength = MAX_NAME_LENGTH - this.className.length();
+		return this.className + " ".repeat(bufferLength);
 	}
 }

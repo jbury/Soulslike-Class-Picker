@@ -2,7 +2,6 @@ package us.jbury.soulslikeclasspicker.eldenring;
 
 import us.jbury.soulslikeclasspicker.core.SoulslikeClass;
 import us.jbury.soulslikeclasspicker.core.SoulslikeClassChoice;
-import us.jbury.soulslikeclasspicker.eldenring.EldenRingClass.EldenRingStat;
 
 public class EldenRingClassChoice extends SoulslikeClassChoice {
 

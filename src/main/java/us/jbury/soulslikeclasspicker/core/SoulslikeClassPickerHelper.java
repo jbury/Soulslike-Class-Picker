@@ -11,8 +11,6 @@ public abstract class SoulslikeClassPickerHelper {
 
 	public abstract List<Stat> getStatsList();
 
-	protected abstract String getClassesJsonFilename();
-
 	protected abstract List<SoulslikeClass> getInternalClassList();
 
 	public abstract SoulslikeClassBuilder getNewBuilder();

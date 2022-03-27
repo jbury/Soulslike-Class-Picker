@@ -1,4 +1,4 @@
-package us.jbury.soulslikeclasspicker.eldenring;
+package us.jbury.soulslikeclasspicker.darksouls1;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
@@ -17,17 +17,16 @@ import us.jbury.soulslikeclasspicker.core.SoulslikeClassChoice;
 import us.jbury.soulslikeclasspicker.core.SoulslikeClassPickerHelper;
 import us.jbury.soulslikeclasspicker.core.Stat;
 
+public class DarkSouls1ClassPickerHelper extends SoulslikeClassPickerHelper {
 
-public class EldenRingClassPickerHelper extends SoulslikeClassPickerHelper {
-
-	private static final String ELDEN_RING_CLASSES_JSON = "EldenRingClasses.json";
+	private static final String DARK_SOULS_1_CLASSES_JSON = "DarkSouls1Classes.json";
 
 	private final List<SoulslikeClass> CLASSES;
 
 	private final List<Stat> STATS;
 
-	public EldenRingClassPickerHelper() throws IOException {
-		InputStream is = getClass().getClassLoader().getResourceAsStream(ELDEN_RING_CLASSES_JSON);
+	public DarkSouls1ClassPickerHelper() throws IOException {
+		InputStream is = getClass().getClassLoader().getResourceAsStream(DARK_SOULS_1_CLASSES_JSON);
 		Reader reader = new InputStreamReader(is, "UTF-8");
 
 		Gson gson = new GsonBuilder()
@@ -35,15 +34,15 @@ public class EldenRingClassPickerHelper extends SoulslikeClassPickerHelper {
 			.create();
 
 		CLASSES = Collections.unmodifiableList(
-			gson.fromJson(reader, new TypeToken<ArrayList<EldenRingClass>>() {
+			gson.fromJson(reader, new TypeToken<ArrayList<DarkSouls1Class>>() {
 			}.getType()));
 
-		STATS = List.of(EldenRingStat.values());
+		STATS = List.of(DarkSouls1Stat.values());
 	}
 
 	@Override
 	public List<Stat> getStatsList() {
-		return this.STATS;
+		return List.of(DarkSouls1Stat.values());
 	}
 
 	@Override
@@ -53,12 +52,12 @@ public class EldenRingClassPickerHelper extends SoulslikeClassPickerHelper {
 
 	@Override
 	public SoulslikeClassBuilder getNewBuilder() {
-		return new EldenRingClass.EldenRingClassBuilder();
+		return new DarkSouls1ClassBuilder();
 	}
 
 	@Override
 	public SoulslikeClassChoice getNewClassChoice(String className, int level,
 		SoulslikeClass wastedStatsBreakdown, int wastedStats) {
-		return new EldenRingClassChoice(className, level, wastedStatsBreakdown, wastedStats);
+		return new DarkSouls1ClassChoice(className, level, wastedStatsBreakdown, wastedStats);
 	}
 }
