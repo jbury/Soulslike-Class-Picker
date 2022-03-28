@@ -13,26 +13,24 @@ import us.jbury.soulslikeclasspicker.core.SoulslikeClass;
 import us.jbury.soulslikeclasspicker.core.SoulslikeClassBuilder;
 import us.jbury.soulslikeclasspicker.core.Stat;
 import us.jbury.soulslikeclasspicker.core.UnmodifiableSoulslikeClassPickerHelper;
-import us.jbury.soulslikeclasspicker.games.darksouls1.DarkSouls1ClassPickerHelper;
+import us.jbury.soulslikeclasspicker.games.eldenring.EldenRingClassPickerHelper;
 import us.jbury.soulslikeclasspicker.premades.EldenRingPremadeConstraints;
 
 public class SoulslikeClassPicker {
 
+	private final SoulslikeClassSummarizer summarizer;
 	private final UnmodifiableSoulslikeClassPickerHelper classPickerHelper;
 
-	public SoulslikeClassPicker(UnmodifiableSoulslikeClassPickerHelper classPickerHelper)
-		throws IOException {
+	public SoulslikeClassPicker(UnmodifiableSoulslikeClassPickerHelper classPickerHelper) {
 		this.classPickerHelper = classPickerHelper;
+		this.summarizer = new SoulslikeClassSummarizer(classPickerHelper);
 	}
 
 	public static void main(String[] args) throws IOException {
-		SoulslikeClassPicker picker = new SoulslikeClassPicker(new DarkSouls1ClassPickerHelper());
-
-		picker.listClassDetails();
-		System.exit(0);
+		SoulslikeClassPicker picker = new SoulslikeClassPicker(new EldenRingClassPickerHelper());
 
 		//Map of Stat to maximum desired value OF that stat in your end build.
-		Map<Stat, Integer> constraints = EldenRingPremadeConstraints.arcaneBloodConstraints();
+		Map<Stat, Integer> constraints = EldenRingPremadeConstraints.StengthFaithConstraints();
 
 		List<BaseSoulslikeClassChoice> choices = picker.pickClass(constraints);
 
@@ -44,21 +42,19 @@ public class SoulslikeClassPicker {
 		}
 	}
 
-	//Just prints level and total stats for each class
-	//For whenever I worry that some classes have free points :)
-	public void listClassDetails() {
-		for (SoulslikeClass c : this.classPickerHelper.getClassList()) {
-			int totalStats = 0;
-			for (Stat s : this.classPickerHelper.getStatsList()) {
-				totalStats += c.getStat(s);
-			}
-			System.out.println(c.getNameWithBuffer() + " - " + (totalStats - c.getLevel()) +
-				" original points (Level: " + c.getLevel() +
-				" \t Total Stats: " + totalStats + ")");
-		}
+	public List<BaseSoulslikeClassChoice> pickClass(Map<Stat, Integer> constraints) {
+		return this.pickClass(constraints, true);
 	}
 
-	public List<BaseSoulslikeClassChoice> pickClass(Map<Stat, Integer> constraints) {
+	public List<BaseSoulslikeClassChoice> pickClass(Map<Stat, Integer> constraints,
+		boolean checkSummaries) {
+		if (checkSummaries) {
+			if (!this.summarizer.allClassesStartEqual()) {
+				this.summarizer.printSummaries();
+				System.exit(1);
+			}
+		}
+
 		List<BaseSoulslikeClassChoice> choices = new ArrayList<BaseSoulslikeClassChoice>();
 
 		Map<SoulslikeClass, Integer> wastedStatsPerClass = new HashMap<SoulslikeClass, Integer>();
@@ -84,5 +80,6 @@ public class SoulslikeClassPicker {
 
 		return choices;
 	}
+
 
 }

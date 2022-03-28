@@ -30,6 +30,17 @@ public class EldenRingPremadeConstraints {
 		return constraints;
 	}
 
+	public static Map<Stat, Integer> StengthFaithConstraints() {
+		Map<Stat, Integer> constraints = new HashMap<Stat, Integer>();
+
+		//16 - Cleanrot Spear, Halo Scythe
+		constraints.put(EldenRingStat.dexterity, 15);
+		constraints.put(EldenRingStat.intelligence, 0);
+		constraints.put(EldenRingStat.arcane, 0);
+
+		return constraints;
+	}
+
 	public static Map<Stat, Integer> pureFaithConstraints() {
 		Map<Stat, Integer> constraints = new HashMap<Stat, Integer>();
 
