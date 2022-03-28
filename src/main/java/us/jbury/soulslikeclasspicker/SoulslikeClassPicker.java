@@ -19,9 +19,9 @@ import us.jbury.soulslikeclasspicker.premades.EldenRingPremadeConstraints;
 public class SoulslikeClassPicker {
 
 	private final SoulslikeClassSummarizer summarizer;
-	private final UnmodifiableSoulslikeClassPickerHelper classPickerHelper;
+	private final ClassPickerHelper classPickerHelper;
 
-	public SoulslikeClassPicker(UnmodifiableSoulslikeClassPickerHelper classPickerHelper) {
+	public SoulslikeClassPicker(ClassPickerHelper classPickerHelper) {
 		this.classPickerHelper = classPickerHelper;
 		this.summarizer = new SoulslikeClassSummarizer(classPickerHelper);
 	}
@@ -81,5 +81,14 @@ public class SoulslikeClassPicker {
 		return choices;
 	}
 
+	public interface ClassPickerHelper{
+		public List<SoulslikeClass> getClassList();
 
+		public List<Stat> getStatsList();
+
+		public SoulslikeClassBuilder getNewBuilder();
+
+		public BaseSoulslikeClassChoice getNewClassChoice(String className, int level,
+			SoulslikeClass wastedStatsBreakdown, int wastedStats);
+	}
 }

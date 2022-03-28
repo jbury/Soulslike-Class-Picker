@@ -2,8 +2,9 @@ package us.jbury.soulslikeclasspicker.core;
 
 import java.util.Collections;
 import java.util.List;
+import us.jbury.soulslikeclasspicker.SoulslikeClassPicker.ClassPickerHelper;
 
-public abstract class UnmodifiableSoulslikeClassPickerHelper {
+public abstract class UnmodifiableSoulslikeClassPickerHelper implements ClassPickerHelper {
 
 	public final List<SoulslikeClass> getClassList() {
 		return Collections.unmodifiableList(getInternalClassList());
