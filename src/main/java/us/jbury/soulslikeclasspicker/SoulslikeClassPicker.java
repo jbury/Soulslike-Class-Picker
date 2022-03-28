@@ -12,7 +12,6 @@ import us.jbury.soulslikeclasspicker.core.BaseSoulslikeClassChoice;
 import us.jbury.soulslikeclasspicker.core.SoulslikeClass;
 import us.jbury.soulslikeclasspicker.core.SoulslikeClassBuilder;
 import us.jbury.soulslikeclasspicker.core.Stat;
-import us.jbury.soulslikeclasspicker.core.UnmodifiableSoulslikeClassPickerHelper;
 import us.jbury.soulslikeclasspicker.games.eldenring.EldenRingClassPickerHelper;
 import us.jbury.soulslikeclasspicker.premades.EldenRingPremadeConstraints;
 
@@ -37,8 +36,9 @@ public class SoulslikeClassPicker {
 		Gson gsonPrinter = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 
 		for (BaseSoulslikeClassChoice c : choices) {
-			System.out.println(c.getNameWithBuffer() + " (Wasted " + c.getTotalWastedStats() + "):\t" +
-				gsonPrinter.toJson(c.getWastedStatsBreakdown()));
+			System.out.println(
+				c.getNameWithBuffer() + " (Wasted " + c.getTotalWastedStats() + "):\t" +
+					gsonPrinter.toJson(c.getWastedStatsBreakdown()));
 		}
 	}
 
@@ -81,7 +81,8 @@ public class SoulslikeClassPicker {
 		return choices;
 	}
 
-	public interface ClassPickerHelper{
+	public interface ClassPickerHelper {
+
 		public List<SoulslikeClass> getClassList();
 
 		public List<Stat> getStatsList();

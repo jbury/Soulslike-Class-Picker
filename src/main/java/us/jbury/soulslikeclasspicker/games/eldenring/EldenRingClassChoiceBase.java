@@ -36,8 +36,9 @@ public class EldenRingClassChoiceBase extends BaseSoulslikeClassChoice {
 		}
 
 		// Use Arcane as first tiebreaker if totalWastedStats are equal
-		int thatArcaneMinusThisArcane = that.getWastedStatsBreakdown().getStat(EldenRingStat.arcane) -
-			this.wastedStatsBreakdown.getStat(EldenRingStat.arcane);
+		int thatArcaneMinusThisArcane =
+			that.getWastedStatsBreakdown().getStat(EldenRingStat.arcane) -
+				this.wastedStatsBreakdown.getStat(EldenRingStat.arcane);
 		if (thatArcaneMinusThisArcane != 0) {
 			return thatArcaneMinusThisArcane;
 		}

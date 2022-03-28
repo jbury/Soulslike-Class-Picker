@@ -20,19 +20,19 @@ public abstract class BaseSoulslikeClassChoice implements SoulslikeClassChoice {
 		return this.wastedStatsBreakdown.getNameWithBuffer();
 	}
 
-	public String getClassName(){
+	public String getClassName() {
 		return this.className;
 	}
 
-	public int getLevel(){
+	public int getLevel() {
 		return this.level;
 	}
 
-	public int getTotalWastedStats(){
+	public int getTotalWastedStats() {
 		return this.totalWastedStats;
 	}
 
-	public SoulslikeClass getWastedStatsBreakdown(){
+	public SoulslikeClass getWastedStatsBreakdown() {
 		return this.wastedStatsBreakdown;
 	}
 
