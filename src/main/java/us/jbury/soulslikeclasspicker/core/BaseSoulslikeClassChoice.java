@@ -1,11 +1,11 @@
 package us.jbury.soulslikeclasspicker.core;
 
-public abstract class BaseSoulslikeClassChoice implements Comparable<BaseSoulslikeClassChoice> {
+public abstract class BaseSoulslikeClassChoice implements SoulslikeClassChoice {
 
-	public final String className;
-	public final int level;
-	public final SoulslikeClass wastedStatsBreakdown;
-	public final int totalWastedStats;
+	protected final String className;
+	protected final int level;
+	protected final SoulslikeClass wastedStatsBreakdown;
+	protected final int totalWastedStats;
 
 	public BaseSoulslikeClassChoice(String className, int level,
 		SoulslikeClass wastedStatsBreakdown,
@@ -20,5 +20,21 @@ public abstract class BaseSoulslikeClassChoice implements Comparable<BaseSoulsli
 		return this.wastedStatsBreakdown.getNameWithBuffer();
 	}
 
-	public abstract int compareTo(BaseSoulslikeClassChoice that);
+	public String getClassName(){
+		return this.className;
+	}
+
+	public int getLevel(){
+		return this.level;
+	}
+
+	public int getTotalWastedStats(){
+		return this.totalWastedStats;
+	}
+
+	public SoulslikeClass getWastedStatsBreakdown(){
+		return this.wastedStatsBreakdown;
+	}
+
+	public abstract int compareTo(SoulslikeClassChoice that);
 }

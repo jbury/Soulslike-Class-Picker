@@ -37,8 +37,8 @@ public class SoulslikeClassPicker {
 		Gson gsonPrinter = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 
 		for (BaseSoulslikeClassChoice c : choices) {
-			System.out.println(c.getNameWithBuffer() + " (Wasted " + c.totalWastedStats + "):\t" +
-				gsonPrinter.toJson(c.wastedStatsBreakdown));
+			System.out.println(c.getNameWithBuffer() + " (Wasted " + c.getTotalWastedStats() + "):\t" +
+				gsonPrinter.toJson(c.getWastedStatsBreakdown()));
 		}
 	}
 

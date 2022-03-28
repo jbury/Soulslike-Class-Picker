@@ -2,6 +2,7 @@ package us.jbury.soulslikeclasspicker.games.darksouls1;
 
 import us.jbury.soulslikeclasspicker.core.BaseSoulslikeClassChoice;
 import us.jbury.soulslikeclasspicker.core.SoulslikeClass;
+import us.jbury.soulslikeclasspicker.core.SoulslikeClassChoice;
 
 public class DarkSouls1ClassChoiceBase extends BaseSoulslikeClassChoice {
 
@@ -11,7 +12,7 @@ public class DarkSouls1ClassChoiceBase extends BaseSoulslikeClassChoice {
 	}
 
 	@Override
-	public int compareTo(BaseSoulslikeClassChoice that) {
-		return this.totalWastedStats - that.totalWastedStats;
+	public int compareTo(SoulslikeClassChoice that) {
+		return this.totalWastedStats - that.getTotalWastedStats();
 	}
 }

@@ -2,6 +2,7 @@ package us.jbury.soulslikeclasspicker.games.eldenring;
 
 import us.jbury.soulslikeclasspicker.core.BaseSoulslikeClassChoice;
 import us.jbury.soulslikeclasspicker.core.SoulslikeClass;
+import us.jbury.soulslikeclasspicker.core.SoulslikeClassChoice;
 
 public class EldenRingClassChoiceBase extends BaseSoulslikeClassChoice {
 
@@ -28,14 +29,14 @@ public class EldenRingClassChoiceBase extends BaseSoulslikeClassChoice {
 	 * Finally, maximize level, so we don't have to spend as much time getting runes.
 	 */
 	@Override
-	public int compareTo(BaseSoulslikeClassChoice that) {
+	public int compareTo(SoulslikeClassChoice that) {
 		// If there's a difference in totalWastedStats, that's our main sorting criteria
-		if (this.totalWastedStats != that.totalWastedStats) {
-			return this.totalWastedStats - that.totalWastedStats;
+		if (this.totalWastedStats != that.getTotalWastedStats()) {
+			return this.totalWastedStats - that.getTotalWastedStats();
 		}
 
 		// Use Arcane as first tiebreaker if totalWastedStats are equal
-		int thatArcaneMinusThisArcane = that.wastedStatsBreakdown.getStat(EldenRingStat.arcane) -
+		int thatArcaneMinusThisArcane = that.getWastedStatsBreakdown().getStat(EldenRingStat.arcane) -
 			this.wastedStatsBreakdown.getStat(EldenRingStat.arcane);
 		if (thatArcaneMinusThisArcane != 0) {
 			return thatArcaneMinusThisArcane;
@@ -43,7 +44,7 @@ public class EldenRingClassChoiceBase extends BaseSoulslikeClassChoice {
 
 		// Use Strength as second tiebreaker if Arcane is also equivalent
 		int thatStrengthMinusThisStrength =
-			that.wastedStatsBreakdown.getStat(EldenRingStat.strength) -
+			that.getWastedStatsBreakdown().getStat(EldenRingStat.strength) -
 				this.wastedStatsBreakdown.getStat(EldenRingStat.strength);
 		if (thatStrengthMinusThisStrength != 0) {
 			return thatStrengthMinusThisStrength;
@@ -51,6 +52,6 @@ public class EldenRingClassChoiceBase extends BaseSoulslikeClassChoice {
 
 		//Somehow totalWastedStats, Arcane, and Strength are equal.  Pick highest level for
 		// convenience
-		return that.level - this.level;
+		return that.getLevel() - this.level;
 	}
 }
