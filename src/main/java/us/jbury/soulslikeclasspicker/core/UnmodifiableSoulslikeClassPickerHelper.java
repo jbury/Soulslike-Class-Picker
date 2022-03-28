@@ -20,6 +20,6 @@ public abstract class UnmodifiableSoulslikeClassPickerHelper implements ClassPic
 
 	public abstract SoulslikeClassBuilder getNewBuilder();
 
-	public abstract BaseSoulslikeClassChoice getNewClassChoice(String className, int level,
+	public abstract SoulslikeClassChoice getNewClassChoice(String className, int level,
 		SoulslikeClass wastedStatsBreakdown, int wastedStats);
 }

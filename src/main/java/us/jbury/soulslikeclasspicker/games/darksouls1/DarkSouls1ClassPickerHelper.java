@@ -11,9 +11,9 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import us.jbury.soulslikeclasspicker.core.BaseSoulslikeClassChoice;
 import us.jbury.soulslikeclasspicker.core.SoulslikeClass;
 import us.jbury.soulslikeclasspicker.core.SoulslikeClassBuilder;
+import us.jbury.soulslikeclasspicker.core.SoulslikeClassChoice;
 import us.jbury.soulslikeclasspicker.core.Stat;
 import us.jbury.soulslikeclasspicker.core.UnmodifiableSoulslikeClassPickerHelper;
 
@@ -57,8 +57,8 @@ public class DarkSouls1ClassPickerHelper extends
 	}
 
 	@Override
-	public BaseSoulslikeClassChoice getNewClassChoice(String className, int level,
+	public SoulslikeClassChoice getNewClassChoice(String className, int level,
 		SoulslikeClass wastedStatsBreakdown, int wastedStats) {
-		return new DarkSouls1ClassChoiceBase(className, level, wastedStatsBreakdown, wastedStats);
+		return new DarkSouls1ClassChoice(className, level, wastedStatsBreakdown, wastedStats);
 	}
 }

@@ -4,9 +4,9 @@ import us.jbury.soulslikeclasspicker.core.BaseSoulslikeClassChoice;
 import us.jbury.soulslikeclasspicker.core.SoulslikeClass;
 import us.jbury.soulslikeclasspicker.core.SoulslikeClassChoice;
 
-public class DarkSouls1ClassChoiceBase extends BaseSoulslikeClassChoice {
+public class DarkSouls1ClassChoice extends BaseSoulslikeClassChoice {
 
-	public DarkSouls1ClassChoiceBase(String className, int level,
+	public DarkSouls1ClassChoice(String className, int level,
 		SoulslikeClass wastedStatsBreakdown, int wastedStats) {
 		super(className, level, wastedStatsBreakdown, wastedStats);
 	}
