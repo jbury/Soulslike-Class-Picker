@@ -1,13 +1,13 @@
 package us.jbury.soulslikeclasspicker.games.eldenring;
 
-import us.jbury.soulslikeclasspicker.core.BaseSoulslikeClassChoice;
-import us.jbury.soulslikeclasspicker.core.SoulslikeClass;
-import us.jbury.soulslikeclasspicker.core.SoulslikeClassChoice;
+import us.jbury.soulslikeclasspicker.core.BaseSoulsLikeClassChoice;
+import us.jbury.soulslikeclasspicker.core.SoulsLikeClass;
+import us.jbury.soulslikeclasspicker.core.SoulsLikeClassChoice;
 
-public class EldenRingClassChoice extends BaseSoulslikeClassChoice {
+public class EldenRingClassChoice extends BaseSoulsLikeClassChoice {
 
 	public EldenRingClassChoice(String className, int level,
-		SoulslikeClass wastedStatsBreakdown,
+		SoulsLikeClass wastedStatsBreakdown,
 		int wastedStats) {
 		super(className, level, wastedStatsBreakdown, wastedStats);
 	}
@@ -29,7 +29,7 @@ public class EldenRingClassChoice extends BaseSoulslikeClassChoice {
 	 * Finally, maximize level, so we don't have to spend as much time getting runes.
 	 */
 	@Override
-	public int compareTo(SoulslikeClassChoice that) {
+	public int compareTo(SoulsLikeClassChoice that) {
 		// If there's a difference in totalWastedStats, that's our main sorting criteria
 		if (this.totalWastedStats != that.getTotalWastedStats()) {
 			return this.totalWastedStats - that.getTotalWastedStats();

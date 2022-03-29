@@ -11,18 +11,18 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import us.jbury.soulslikeclasspicker.core.SoulslikeClass;
-import us.jbury.soulslikeclasspicker.core.SoulslikeClassBuilder;
-import us.jbury.soulslikeclasspicker.core.SoulslikeClassChoice;
+import us.jbury.soulslikeclasspicker.core.SoulsLikeClass;
+import us.jbury.soulslikeclasspicker.core.SoulsLikeClassBuilder;
+import us.jbury.soulslikeclasspicker.core.SoulsLikeClassChoice;
 import us.jbury.soulslikeclasspicker.core.Stat;
-import us.jbury.soulslikeclasspicker.core.UnmodifiableSoulslikeClassPickerHelper;
+import us.jbury.soulslikeclasspicker.core.UnmodifiableSoulsLikeClassPickerHelper;
 
 
-public class EldenRingClassPickerHelper extends UnmodifiableSoulslikeClassPickerHelper {
+public class EldenRingClassPickerHelper extends UnmodifiableSoulsLikeClassPickerHelper {
 
 	private static final String ELDEN_RING_CLASSES_JSON = "EldenRingClasses.json";
 
-	private final List<SoulslikeClass> CLASSES;
+	private final List<SoulsLikeClass> CLASSES;
 
 	private final List<Stat> STATS;
 
@@ -47,18 +47,18 @@ public class EldenRingClassPickerHelper extends UnmodifiableSoulslikeClassPicker
 	}
 
 	@Override
-	protected List<SoulslikeClass> getInternalClassList() {
+	protected List<SoulsLikeClass> getInternalClassList() {
 		return this.CLASSES;
 	}
 
 	@Override
-	public SoulslikeClassBuilder getNewBuilder() {
+	public SoulsLikeClassBuilder getNewBuilder() {
 		return new EldenRingClassBuilder();
 	}
 
 	@Override
-	public SoulslikeClassChoice getNewClassChoice(String className, int level,
-		SoulslikeClass wastedStatsBreakdown, int wastedStats) {
+	public SoulsLikeClassChoice getNewClassChoice(String className, int level,
+		SoulsLikeClass wastedStatsBreakdown, int wastedStats) {
 		return new EldenRingClassChoice(className, level, wastedStatsBreakdown, wastedStats);
 	}
 }

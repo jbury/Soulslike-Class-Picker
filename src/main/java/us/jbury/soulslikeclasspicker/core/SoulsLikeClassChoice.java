@@ -1,6 +1,6 @@
 package us.jbury.soulslikeclasspicker.core;
 
-public interface SoulslikeClassChoice extends Comparable<SoulslikeClassChoice> {
+public interface SoulsLikeClassChoice extends Comparable<SoulsLikeClassChoice> {
 
 	public String getNameWithBuffer();
 
@@ -10,5 +10,5 @@ public interface SoulslikeClassChoice extends Comparable<SoulslikeClassChoice> {
 
 	public int getTotalWastedStats();
 
-	public SoulslikeClass getWastedStatsBreakdown();
+	public SoulsLikeClass getWastedStatsBreakdown();
 }

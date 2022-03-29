@@ -2,10 +2,10 @@ package us.jbury.soulslikeclasspicker.games.darksouls1;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import us.jbury.soulslikeclasspicker.core.SoulslikeClass;
+import us.jbury.soulslikeclasspicker.core.SoulsLikeClass;
 import us.jbury.soulslikeclasspicker.core.Stat;
 
-public class DarkSouls1Class implements SoulslikeClass {
+public class DarkSouls1Class implements SoulsLikeClass {
 
 	public final static int MAX_NAME_LENGTH = 10;
 	@SerializedName("Class")

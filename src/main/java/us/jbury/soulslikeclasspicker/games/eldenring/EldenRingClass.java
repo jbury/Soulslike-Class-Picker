@@ -2,10 +2,10 @@ package us.jbury.soulslikeclasspicker.games.eldenring;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import us.jbury.soulslikeclasspicker.core.SoulslikeClass;
+import us.jbury.soulslikeclasspicker.core.SoulsLikeClass;
 import us.jbury.soulslikeclasspicker.core.Stat;
 
-public class EldenRingClass implements SoulslikeClass {
+public class EldenRingClass implements SoulsLikeClass {
 
 	public final static int MAX_NAME_LENGTH = 10;
 	@SerializedName("Class")

@@ -1,18 +1,18 @@
 package us.jbury.soulslikeclasspicker.games.darksouls1;
 
-import us.jbury.soulslikeclasspicker.core.BaseSoulslikeClassChoice;
-import us.jbury.soulslikeclasspicker.core.SoulslikeClass;
-import us.jbury.soulslikeclasspicker.core.SoulslikeClassChoice;
+import us.jbury.soulslikeclasspicker.core.BaseSoulsLikeClassChoice;
+import us.jbury.soulslikeclasspicker.core.SoulsLikeClass;
+import us.jbury.soulslikeclasspicker.core.SoulsLikeClassChoice;
 
-public class DarkSouls1ClassChoice extends BaseSoulslikeClassChoice {
+public class DarkSouls1ClassChoice extends BaseSoulsLikeClassChoice {
 
 	public DarkSouls1ClassChoice(String className, int level,
-		SoulslikeClass wastedStatsBreakdown, int wastedStats) {
+		SoulsLikeClass wastedStatsBreakdown, int wastedStats) {
 		super(className, level, wastedStatsBreakdown, wastedStats);
 	}
 
 	@Override
-	public int compareTo(SoulslikeClassChoice that) {
+	public int compareTo(SoulsLikeClassChoice that) {
 		return this.totalWastedStats - that.getTotalWastedStats();
 	}
 }

@@ -11,18 +11,18 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import us.jbury.soulslikeclasspicker.core.SoulslikeClass;
-import us.jbury.soulslikeclasspicker.core.SoulslikeClassBuilder;
-import us.jbury.soulslikeclasspicker.core.SoulslikeClassChoice;
+import us.jbury.soulslikeclasspicker.core.SoulsLikeClass;
+import us.jbury.soulslikeclasspicker.core.SoulsLikeClassBuilder;
+import us.jbury.soulslikeclasspicker.core.SoulsLikeClassChoice;
 import us.jbury.soulslikeclasspicker.core.Stat;
-import us.jbury.soulslikeclasspicker.core.UnmodifiableSoulslikeClassPickerHelper;
+import us.jbury.soulslikeclasspicker.core.UnmodifiableSoulsLikeClassPickerHelper;
 
 public class DarkSouls1ClassPickerHelper extends
-	UnmodifiableSoulslikeClassPickerHelper {
+	UnmodifiableSoulsLikeClassPickerHelper {
 
 	private static final String DARK_SOULS_1_CLASSES_JSON = "DarkSouls1Classes.json";
 
-	private final List<SoulslikeClass> CLASSES;
+	private final List<SoulsLikeClass> CLASSES;
 
 	private final List<Stat> STATS;
 
@@ -47,18 +47,18 @@ public class DarkSouls1ClassPickerHelper extends
 	}
 
 	@Override
-	protected List<SoulslikeClass> getInternalClassList() {
+	protected List<SoulsLikeClass> getInternalClassList() {
 		return this.CLASSES;
 	}
 
 	@Override
-	public SoulslikeClassBuilder getNewBuilder() {
+	public SoulsLikeClassBuilder getNewBuilder() {
 		return new DarkSouls1ClassBuilder();
 	}
 
 	@Override
-	public SoulslikeClassChoice getNewClassChoice(String className, int level,
-		SoulslikeClass wastedStatsBreakdown, int wastedStats) {
+	public SoulsLikeClassChoice getNewClassChoice(String className, int level,
+		SoulsLikeClass wastedStatsBreakdown, int wastedStats) {
 		return new DarkSouls1ClassChoice(className, level, wastedStatsBreakdown, wastedStats);
 	}
 }

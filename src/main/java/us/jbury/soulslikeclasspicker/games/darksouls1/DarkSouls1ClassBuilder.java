@@ -1,10 +1,10 @@
 package us.jbury.soulslikeclasspicker.games.darksouls1;
 
-import us.jbury.soulslikeclasspicker.core.SoulslikeClassBuilder;
+import us.jbury.soulslikeclasspicker.core.SoulsLikeClassBuilder;
 import us.jbury.soulslikeclasspicker.core.Stat;
 
 public class DarkSouls1ClassBuilder implements
-	SoulslikeClassBuilder {
+	SoulsLikeClassBuilder {
 
 	public String className;
 	public int level, vitality, attunement, endurance, strength, dexterity, resistance, intelligence, faith;
@@ -59,7 +59,7 @@ public class DarkSouls1ClassBuilder implements
 		return this;
 	}
 
-	public SoulslikeClassBuilder withStat(Stat stat, int value) {
+	public SoulsLikeClassBuilder withStat(Stat stat, int value) {
 		switch ((DarkSouls1Stat) stat) {
 			case vitality:
 				return this.withVitality(value);

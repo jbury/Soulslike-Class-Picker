@@ -1,6 +1,6 @@
 package us.jbury.soulslikeclasspicker.core;
 
-public interface SoulslikeClass {
+public interface SoulsLikeClass {
 
 	public int getStat(Stat s);
 

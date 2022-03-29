@@ -32,6 +32,7 @@ public class EldenRingPremadeConstraints {
 
 	public static Map<Stat, Integer> StengthFaithConstraints() {
 		Map<Stat, Integer> constraints = new HashMap<Stat, Integer>();
+		//Strength - 20 to start, 34 for most early weapons,
 
 		//16 - Cleanrot Spear, Halo Scythe
 		constraints.put(EldenRingStat.dexterity, 15);

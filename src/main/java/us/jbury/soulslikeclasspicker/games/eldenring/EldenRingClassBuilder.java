@@ -1,10 +1,10 @@
 package us.jbury.soulslikeclasspicker.games.eldenring;
 
-import us.jbury.soulslikeclasspicker.core.SoulslikeClassBuilder;
+import us.jbury.soulslikeclasspicker.core.SoulsLikeClassBuilder;
 import us.jbury.soulslikeclasspicker.core.Stat;
 
 public class EldenRingClassBuilder implements
-	SoulslikeClassBuilder {
+	SoulsLikeClassBuilder {
 
 	public String className;
 	public int level, vigor, mind, endurance, strength, dexterity, intelligence, faith, arcane;
@@ -59,7 +59,7 @@ public class EldenRingClassBuilder implements
 		return this;
 	}
 
-	public SoulslikeClassBuilder withStat(Stat stat, int value) {
+	public SoulsLikeClassBuilder withStat(Stat stat, int value) {
 		switch ((EldenRingStat) stat) {
 			case vigor:
 				return this.withVigor(value);

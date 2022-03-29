@@ -8,45 +8,45 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import us.jbury.soulslikeclasspicker.core.SoulslikeClass;
-import us.jbury.soulslikeclasspicker.core.SoulslikeClassBuilder;
-import us.jbury.soulslikeclasspicker.core.SoulslikeClassChoice;
+import us.jbury.soulslikeclasspicker.core.SoulsLikeClass;
+import us.jbury.soulslikeclasspicker.core.SoulsLikeClassBuilder;
+import us.jbury.soulslikeclasspicker.core.SoulsLikeClassChoice;
 import us.jbury.soulslikeclasspicker.core.Stat;
 import us.jbury.soulslikeclasspicker.games.eldenring.EldenRingClassPickerHelper;
 import us.jbury.soulslikeclasspicker.premades.EldenRingPremadeConstraints;
 
-public class SoulslikeClassPicker {
+public class SoulsLikeClassPicker {
 
-	private final SoulslikeClassSummarizer summarizer;
+	private final SoulsLikeClassSummarizer summarizer;
 	private final ClassPickerHelper classPickerHelper;
 
-	public SoulslikeClassPicker(ClassPickerHelper classPickerHelper) {
+	public SoulsLikeClassPicker(ClassPickerHelper classPickerHelper) {
 		this.classPickerHelper = classPickerHelper;
-		this.summarizer = new SoulslikeClassSummarizer(classPickerHelper);
+		this.summarizer = new SoulsLikeClassSummarizer(classPickerHelper);
 	}
 
 	public static void main(String[] args) throws IOException {
-		SoulslikeClassPicker picker = new SoulslikeClassPicker(new EldenRingClassPickerHelper());
+		SoulsLikeClassPicker picker = new SoulsLikeClassPicker(new EldenRingClassPickerHelper());
 
 		//Map of Stat to maximum desired value OF that stat in your end build.
 		Map<Stat, Integer> constraints = EldenRingPremadeConstraints.StengthFaithConstraints();
 
-		List<SoulslikeClassChoice> choices = picker.pickClass(constraints);
+		List<SoulsLikeClassChoice> choices = picker.pickClass(constraints);
 
 		Gson gsonPrinter = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 
-		for (SoulslikeClassChoice c : choices) {
+		for (SoulsLikeClassChoice c : choices) {
 			System.out.println(
 				c.getNameWithBuffer() + " (Wasted " + c.getTotalWastedStats() + "):\t" +
 					gsonPrinter.toJson(c.getWastedStatsBreakdown()));
 		}
 	}
 
-	public List<SoulslikeClassChoice> pickClass(Map<Stat, Integer> constraints) {
+	public List<SoulsLikeClassChoice> pickClass(Map<Stat, Integer> constraints) {
 		return this.pickClass(constraints, true);
 	}
 
-	public List<SoulslikeClassChoice> pickClass(Map<Stat, Integer> constraints,
+	public List<SoulsLikeClassChoice> pickClass(Map<Stat, Integer> constraints,
 		boolean checkSummaries) {
 		if (checkSummaries) {
 			if (!this.summarizer.allClassesStartEqual()) {
@@ -55,13 +55,13 @@ public class SoulslikeClassPicker {
 			}
 		}
 
-		List<SoulslikeClassChoice> choices = new ArrayList<SoulslikeClassChoice>();
+		List<SoulsLikeClassChoice> choices = new ArrayList<SoulsLikeClassChoice>();
 
-		Map<SoulslikeClass, Integer> wastedStatsPerClass = new HashMap<SoulslikeClass, Integer>();
-		Map<SoulslikeClass, SoulslikeClass> classToWastedStatsMap =
-			new HashMap<SoulslikeClass, SoulslikeClass>();
-		for (SoulslikeClass c : this.classPickerHelper.getClassList()) {
-			SoulslikeClassBuilder builder = this.classPickerHelper.getNewBuilder()
+		Map<SoulsLikeClass, Integer> wastedStatsPerClass = new HashMap<SoulsLikeClass, Integer>();
+		Map<SoulsLikeClass, SoulsLikeClass> classToWastedStatsMap =
+			new HashMap<SoulsLikeClass, SoulsLikeClass>();
+		for (SoulsLikeClass c : this.classPickerHelper.getClassList()) {
+			SoulsLikeClassBuilder builder = this.classPickerHelper.getNewBuilder()
 				.withClassName(c.getName())
 				.withLevel(c.getLevel());
 			int totalWasted = 0;
@@ -83,13 +83,13 @@ public class SoulslikeClassPicker {
 
 	public interface ClassPickerHelper {
 
-		public List<SoulslikeClass> getClassList();
+		public List<SoulsLikeClass> getClassList();
 
 		public List<Stat> getStatsList();
 
-		public SoulslikeClassBuilder getNewBuilder();
+		public SoulsLikeClassBuilder getNewBuilder();
 
-		public SoulslikeClassChoice getNewClassChoice(String className, int level,
-			SoulslikeClass wastedStatsBreakdown, int wastedStats);
+		public SoulsLikeClassChoice getNewClassChoice(String className, int level,
+			SoulsLikeClass wastedStatsBreakdown, int wastedStats);
 	}
 }

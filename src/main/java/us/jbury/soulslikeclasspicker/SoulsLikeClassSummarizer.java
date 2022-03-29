@@ -3,17 +3,17 @@ package us.jbury.soulslikeclasspicker;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import us.jbury.soulslikeclasspicker.SoulslikeClassPicker.ClassPickerHelper;
-import us.jbury.soulslikeclasspicker.core.SoulslikeClass;
+import us.jbury.soulslikeclasspicker.SoulsLikeClassPicker.ClassPickerHelper;
+import us.jbury.soulslikeclasspicker.core.SoulsLikeClass;
 import us.jbury.soulslikeclasspicker.core.Stat;
 
-public class SoulslikeClassSummarizer {
+public class SoulsLikeClassSummarizer {
 
 	private final List<ClassSummary> summaries;
 
-	public SoulslikeClassSummarizer(ClassPickerHelper pickerHelper) {
+	public SoulsLikeClassSummarizer(ClassPickerHelper pickerHelper) {
 		List<ClassSummary> intermediateSummaries = new ArrayList<ClassSummary>();
-		for (SoulslikeClass c : pickerHelper.getClassList()) {
+		for (SoulsLikeClass c : pickerHelper.getClassList()) {
 			int totalStats = 0;
 			for (Stat s : pickerHelper.getStatsList()) {
 				totalStats += c.getStat(s);
