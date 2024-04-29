@@ -1,2 +1,14 @@
 .idea/
 target/
+.classpath
+.project
+.settings/
+# Devenv
+.devenv*
+devenv.local.nix
+
+# direnv
+.direnv
+
+# pre-commit
+.pre-commit-config.yaml
